@@ -6,6 +6,7 @@ module.exports = {
 };
 
 /**
+
 ember-scroll-to-mk2
 ===================
 
@@ -21,7 +22,6 @@ Current implementation uses jQuery for animated scrolling (animation is optional
 
 See:
 [demo](https://lolmaus.github.io/ember-scroll-to-mk2/),
-[Tests](https://lolmaus.github.io/ember-scroll-to-mk2/tests/),
 [API docs](https://lolmaus.github.io/yuidork/#/lolmaus/ember-scroll-to-mk2/gen-1/classes/Component).
 
 
@@ -62,7 +62,7 @@ Inline form:
 ```
 
 Block form:
- 
+
 ```hbs
 {{#scroll-to
   target = "#foo"
@@ -70,8 +70,6 @@ Block form:
   <strong>Scroll to #foo"</strong>
 {{/scroll-to}}
 ```
- 
-It is recommended that you either use `tagName='button'` or `tagName='a' href`.
 
 
 
@@ -89,7 +87,7 @@ Arguments
 | `cacheTarget`     | `Boolean`            | `true`          | Whether to cache the target element.                                                         |
 | `cacheScrollable` | `Boolean`            | `true`          | Whether to cache the scrollable element.                                                     |
 | `afterScroll`     | `undefined`/Action   | `undefined`     | Ember Action to invoke every time scrolling animation completes.                             |
- 
+
 
 
 License
@@ -98,6 +96,6 @@ License
 This software is free to use under the MIT license. See the [LICENSE](https://github.com/ember-scroll-to-mk2/blob/gen-1/LICENSE.md) file for license text and copyright information.
 
 Includes fragments of code borrowed from [jasonkriss/ember-scroll-to](https://github.com/jasonkriss/ember-scroll-to/).
- 
+
 @module ember-scroll-to-mk2
 **/
