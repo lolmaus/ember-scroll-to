@@ -13,7 +13,6 @@ Current implementation uses jQuery for animated scrolling (animation is optional
 
 See:
 [demo](https://lolmaus.github.io/ember-scroll-to-mk2/),
-[Tests](https://lolmaus.github.io/ember-scroll-to-mk2/tests/),
 [API docs](https://lolmaus.github.io/yuidork/#/lolmaus/ember-scroll-to-mk2/gen-1/classes/Component).
 
 

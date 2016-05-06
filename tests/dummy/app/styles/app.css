@@ -1,11 +1,11 @@
 .fixed {
-  position: absolute;
+  position: fixed;
 
   top:    2rem;
   left:   2rem;
   bottom: 2rem;
 
-  width: 5rem;
+  width: 10rem;
 
   overflow-x: hidden;
   overflow-y: auto;
@@ -13,12 +13,12 @@
 
 .scrollable-left {
   outline: 2px dashed red;
-  left: 9rem;
+  left: 14rem;
 }
 
 .scrollable-right {
   outline: 2px dashed red;
-  left:    16rem;
+  left:    26rem;
 }
 
 .scrollable-body {
@@ -27,4 +27,8 @@
 
 #ember-testing-container {
   position: absolute !important;
+}
+
+#ember-testing-container .fixed {
+  position: absolute;
 }
