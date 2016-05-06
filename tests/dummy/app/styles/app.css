@@ -24,3 +24,7 @@
 .scrollable-body {
   text-align: right;
 }
+
+#ember-testing-container {
+  position: absolute !important;
+}
