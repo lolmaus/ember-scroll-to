@@ -1,0 +1,95 @@
+<div class="scrollable">
+
+
+  <div class="fixed">
+    <p>
+      {{scroll-to
+        label      = "Scroll left column to 20"
+        tagName    = "button"
+        target     = "#left-20"
+        scrollable = ".scrollable-left"
+        class      = "button-left-20"
+      }}
+    </p>
+
+    <p>
+      {{scroll-to
+        label="Scroll left column to 80"
+        tagName   = "button"
+        target    = "#left-80"
+        scrollable = ".scrollable-left"
+        class      = "button-left-80"
+      }}
+    </p>
+
+    <br>
+
+    <p>
+      {{scroll-to
+        label     = "Scroll right column to 20"
+        tagName   = "button"
+        target    = "#right-20"
+        scrollable = ".scrollable-right"
+        class      = "button-right-20"
+      }}
+    </p>
+
+    <p>
+      {{scroll-to
+        label="Scroll right column to 80"
+        tagName   = "button"
+        target    = "#right-80"
+        scrollable = ".scrollable-right"
+        class      = "button-right-80"
+      }}
+    </p>
+
+    <br>
+
+    <p>
+      {{scroll-to
+        label     = "Scroll body to 20"
+        tagName   = "button"
+        target    = "#body-20"
+        class     = "button-body-20"
+      }}
+    </p>
+
+    <p>
+      {{scroll-to
+        label="Scroll body to 80"
+        tagName   = "button"
+        target    = "#body-80"
+        class     = "button-body-80"
+      }}
+    </p>
+  </div>
+
+
+  <div class="fixed scrollable scrollable-left">
+    {{#each (range 100) as |i|}}
+      <p id={{plus "left-" i}}>
+        {{i}}
+      </p>
+    {{/each}}
+  </div>
+
+
+  <div class="fixed scrollable scrollable-right">
+    {{#each (range 100) as |i|}}
+      <p id={{plus "right-" i}}>
+        {{i}}
+      </p>
+    {{/each}}
+  </div>
+
+</div>
+
+
+<div class="scrollable scrollable-body">
+  {{#each (range 100) as |i|}}
+    <p id={{plus "body-" i}}>
+      {{i}}
+    </p>
+  {{/each}}
+</div>

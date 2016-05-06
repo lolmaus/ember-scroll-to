@@ -1,7 +1,7 @@
 {
   "name": "ember-scroll-to-mk2",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "A link/button component that performs scrolling to given selector.",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,7 +11,8 @@
     "start": "ember server",
     "test": "ember try:each"
   },
-  "repository": "",
+  "homepage": "https://github.com/lolmaus/ember-scroll-to-mk2",
+  "repository": "lolmaus/ember-scroll-to-mk2",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -23,7 +24,6 @@
     "ember-cli": "2.6.0-beta.2",
     "ember-cli-app-version": "^1.0.0",
     "ember-cli-dependency-checker": "^1.2.0",
-    "ember-cli-htmlbars": "^1.0.3",
     "ember-cli-htmlbars-inline-precompile": "^0.3.1",
     "ember-cli-inject-live-reload": "^1.4.0",
     "ember-cli-jshint": "^1.0.0",
@@ -36,14 +36,25 @@
     "ember-export-application-global": "^1.0.5",
     "ember-load-initializers": "^0.5.1",
     "ember-resolver": "^2.0.3",
-    "ember-welcome-page": "^1.0.1",
-    "loader.js": "^4.0.1"
+    "express": "^4.13.4",
+    "glob": "^4.5.3",
+    "loader.js": "^4.0.1",
+    "morgan": "^1.7.0",
+    "recursive-readdir": "^2.0.0"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "scroll-to",
+    "scroll to",
+    "scroll",
+    "anchor",
+    "scrolling",
+    "ember"
   ],
   "dependencies": {
-    "ember-cli-babel": "^5.1.6"
+    "ember-cli-babel": "^5.1.6",
+    "ember-cli-htmlbars": "^1.0.3",
+    "ember-get-config": "0.0.3"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"

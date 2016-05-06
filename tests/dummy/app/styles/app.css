@@ -1,0 +1,26 @@
+.fixed {
+  position: absolute;
+
+  top:    2rem;
+  left:   2rem;
+  bottom: 2rem;
+
+  width: 5rem;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.scrollable-left {
+  outline: 2px dashed red;
+  left: 9rem;
+}
+
+.scrollable-right {
+  outline: 2px dashed red;
+  left:    16rem;
+}
+
+.scrollable-body {
+  text-align: right;
+}
