@@ -1,5 +1,6 @@
 ---
 yuidork: true
+main:    true
 ---
 
 ember-scroll-to-mk2
