@@ -1,3 +1,7 @@
+---
+yuidork: true
+---
+
 ember-scroll-to-mk2
 ===================
 
