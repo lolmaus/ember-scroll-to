@@ -182,9 +182,9 @@ export default Component.extend({
    * @property href
    * @type Ember Template
    **/
-  href: computed('tagName', function () {
+  href: computed('tagName', 'target', function () {
     return this.get('tagName') === 'a'
-      ? ''
+      ? (this.get('target') || '')
       : null;
   }),
 

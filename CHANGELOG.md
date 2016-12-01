@@ -8,6 +8,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 Unreleased
 ----------
 
+
+
+1.1.0
+-----
+
+### Fixed
+- `href` attr is now filled correctly for FastBoot compatibility.
+
 ### Tests
 - Updated right column scrollers not to use caching.
 
