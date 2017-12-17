@@ -1,20 +1,16 @@
-import Ember from 'ember';
-import ENV from 'ember-get-config';
+import $ from 'jquery'
+import Component from '@ember/component'
+import {computed} from '@ember/object'
+import {on} from '@ember/object/evented'
+import {run} from '@ember/runloop'
+import ENV from 'ember-get-config'
 
-const {
-  $,
-  Component,
-  computed,
-  on,
-  run,
-} = Ember;
-
-import layout from 'ember-scroll-to-mk2/templates/components/scroll-to';
+import layout from 'ember-scroll-to-mk2/templates/components/scroll-to'
 
 const DEFAULT_SCROLLABLE =
   ENV.environment === 'test'
     ? '#ember-testing-container'
-    : 'html, body';
+    : 'html, body'
 
 
 /**
@@ -49,18 +45,18 @@ Block form:
 
 ## Arguments
 
-| Argument                     | Type                 | Default  value                         | Description                                                                                  |
-|:-----------------------------|:---------------------|:---------------------------------------|:---------------------------------------------------------------------------------------------|
-| `label`                      | `undefined`/`String` | `undefined`                            | If no block is provided, this is used as link/button label.                                  |
-| `target`                     | `String`             | **\<required>**                        | Selector of the element to scroll to                                                         |
-| `scrollable`                 | `String`             | `'html, body'`                         | Selector of the element being scrolled. In `test` env, `'#ember-testing-container'` is used. |
-| `duration`                   | `undefined`/`Number` | `undefined`                            | Animation duration in milliseconds. When `undefined`, jQuery's default is used.              |
-| `easing`                     | `undefined`/`String` | `undefined`                            | Animation easing name. When `undefined`, jQuery's default is used.                           |
-| `offset`                     | `Number`             | `0`                                    | Lets you scroll slightly above or below the target.                                          |
-| `cacheTarget`                | `Boolean`            | `true`                                 | Whether to cache the target element.                                                         |
-| `cacheScrollable`            | `Boolean`            | `true`                                 | Whether to cache the scrollable element.                                                     |
-| `afterScroll`                | `undefined`/Action   | `undefined`                            | Ember Action to invoke every time scrolling animation completes.                             |
-| `shouldAccountForScrollable` | `Boolean`            | `false` if `scrollable` is not default | Whether to account for `scollable`'s `offset` and `scolllTop` when calculating `scolllTop`.  |
+| Argument                     | Type                       | Default  value                         | Description                                                                                  |
+|:-----------------------------|:---------------------------|:---------------------------------------|:---------------------------------------------------------------------------------------------|
+| `label`                      | `undefined`/`String`       | `undefined`                            | If no block is provided, this is used as link/button label.                                  |
+| `target`                     | `String`                   | **\<required>**                        | Selector of the element to scroll to                                                         |
+| `scrollable`                 | `String`                   | `'html'`                               | Selector of the element being scrolled. In `test` env, `'#ember-testing-container'` is used. |
+| `duration`                   | `undefined`/`Number`       | `undefined`                            | Animation duration in milliseconds. When `undefined`, jQuery's default is used.              |
+| `easing`                     | `undefined`/`String`       | `undefined`                            | Animation easing name. When `undefined`, jQuery's default is used.                           |
+| `offset`                     | `Number`                   | `0`                                    | Lets you scroll slightly above or below the target.                                          |
+| `cacheTarget`                | `Boolean`                  | `true`                                 | Whether to cache the target element.                                                         |
+| `cacheScrollable`            | `Boolean`                  | `true`                                 | Whether to cache the scrollable element.                                                     |
+| `afterScroll`                | `undefined`/Closure action | `undefined`                            | Ember closure action to invoke every time scrolling animation completes.                     |
+| `shouldAccountForScrollable` | `Boolean`                  | `false` if `scrollable` is not 'html'  | Whether to account for `scollable`'s `offset` and `scolllTop` when calculating `scolllTop`.  |
 
 
 
@@ -80,7 +76,7 @@ export default Component.extend({
    * @type String
    * @required
    **/
-  target: null,
+  target : null,
 
 
 
@@ -91,7 +87,7 @@ export default Component.extend({
    * @type String
    * @default 'html, body'
    **/
-  scrollable: DEFAULT_SCROLLABLE,
+  scrollable : DEFAULT_SCROLLABLE,
 
 
 
@@ -102,7 +98,7 @@ export default Component.extend({
    * @type undefined|Number
    * @default undefined
    **/
-  duration: undefined,
+  duration : undefined,
 
 
 
@@ -113,7 +109,7 @@ export default Component.extend({
    * @type undefined|String
    * @default undefined
    **/
-  easing: undefined,
+  easing : undefined,
 
 
 
@@ -124,7 +120,7 @@ export default Component.extend({
    * @type Number
    * @default 0
    **/
-  offset: 0,
+  offset : 0,
 
 
 
@@ -135,7 +131,7 @@ export default Component.extend({
    * @type Boolean
    * @default true
    **/
-  cacheScrollable: true,
+  cacheScrollable : true,
 
 
 
@@ -146,7 +142,7 @@ export default Component.extend({
    * @type Boolean
    * @default true
    **/
-  cacheTarget: true,
+  cacheTarget : true,
 
 
 
@@ -157,7 +153,7 @@ export default Component.extend({
    * @type undefined|Action
    * @default undefined
    **/
-  afterScroll: undefined,
+  afterScroll : undefined,
 
 
 
@@ -167,14 +163,14 @@ export default Component.extend({
    * @property attributeBindings
    * @type {Array}
    **/
-  attributeBindings: ['href'],
+  attributeBindings : ['href'],
 
 
   /**
    * @property classNames
    * @type {Array}
    **/
-  classNames: ['scrollTo'],
+  classNames : ['scrollTo'],
 
 
   /**
@@ -183,10 +179,10 @@ export default Component.extend({
    * @property href
    * @type Ember Template
    **/
-  href: computed('tagName', 'target', function () {
+  href : computed('tagName', 'target', function () {
     return this.get('tagName') === 'a'
       ? (this.get('target') || '')
-      : null;
+      : null
   }),
 
 
@@ -197,8 +193,8 @@ export default Component.extend({
    * @property shouldAccountForScrollable
    * @type Boolean
    **/
-  shouldAccountForScrollable: computed('scrollable', function () {
-    return this.get('scrollable') !== DEFAULT_SCROLLABLE;
+  shouldAccountForScrollable : computed('scrollable', function () {
+    return this.get('scrollable') !== 'html'
   }),
 
 
@@ -213,7 +209,7 @@ export default Component.extend({
    * @property tagName
    * @type {String}
    **/
-  tagName: 'a',
+  tagName : 'a',
 
 
 
@@ -229,8 +225,8 @@ export default Component.extend({
    * @type jQuery Collection
    * @final
    **/
-  $scrollable: computed('scrollable', function () {
-    return this._get$('scrollable');
+  $scrollable : computed('scrollable', function () {
+    return this._get$('scrollable')
   }),
 
 
@@ -242,8 +238,8 @@ export default Component.extend({
    * @type jQuery Collection
    * @final
    **/
-  $target: computed('target', function () {
-    return this._get$('target');
+  $target : computed('target', function () {
+    return this._get$('target')
   }),
 
 
@@ -255,11 +251,11 @@ export default Component.extend({
    * @on click
    * @private
    **/
-  _scrollVerticalOnClick: on('click', function(event) {
-    event.stopPropagation();
-    event.preventDefault();
+  _scrollVerticalOnClick : on('click', function (event) {
+    event.stopPropagation()
+    event.preventDefault()
 
-    this._scrollVertical();
+    this._scrollVertical()
   }),
 
 
@@ -274,9 +270,9 @@ export default Component.extend({
    * @param propertyName {String} Name of property containing selector string.
    * @returns {jQuery Collection}
    **/
-  _get$(propertyName) {
-    const selector = this.get(propertyName);
-    return $(selector);
+  _get$ (propertyName) {
+    const selector = this.get(propertyName)
+    return $(selector)
   },
 
 
@@ -291,7 +287,7 @@ export default Component.extend({
   _get$scrollableCached () {
     return this.get('cacheScrollable')
       ? this.get('$scrollable')
-      : this._get$('scrollable');
+      : this._get$('scrollable')
   },
 
 
@@ -307,7 +303,7 @@ export default Component.extend({
   _get$targetCached () {
     return this.get('cacheTarget')
       ? this.get('$target')
-      : this._get$('target');
+      : this._get$('target')
   },
 
 
@@ -325,22 +321,22 @@ export default Component.extend({
    * @returns {Number} Vertical coord in pixels
    **/
   _getVerticalCoord ({$scrollable, $target}) {
-    $scrollable = $scrollable || this._get$scrollableCached();
-    $target    = $target    || this._get$targetCached();
+    $scrollable = $scrollable || this._get$scrollableCached()
+    $target    = $target    || this._get$targetCached()
 
-    const elementOffset              = $target.offset().top;
-    const offset                     = this.get('offset');
-    const shouldAccountForScrollable = this.get('shouldAccountForScrollable');
+    const elementOffset              = $target.offset().top
+    const offset                     = this.get('offset')
+    const shouldAccountForScrollable = this.get('shouldAccountForScrollable')
 
-    let verticalCoord = elementOffset + offset;
+    let verticalCoord = elementOffset + offset
 
     if (shouldAccountForScrollable) {
-      const scrollableOffset    = $scrollable.offset().top;
-      const scrollableScrollTop = $scrollable.scrollTop();
-      verticalCoord = verticalCoord - scrollableOffset + scrollableScrollTop;
+      const scrollableOffset    = $scrollable.offset().top
+      const scrollableScrollTop = $scrollable.scrollTop()
+      verticalCoord = verticalCoord - scrollableOffset + scrollableScrollTop
     }
 
-    return verticalCoord;
+    return verticalCoord
   },
 
 
@@ -352,15 +348,18 @@ export default Component.extend({
    * @private
    **/
   _scrollVertical () {
-    const $scrollable = this._get$scrollableCached();
-    const scrollTop   = this._getVerticalCoord({$scrollable});
-    const duration    = ENV.environment === 'test' ? 0 : this.get('duration');
+    const $scrollable = this._get$scrollableCached()
+    const scrollTop   = this._getVerticalCoord({$scrollable})
+    const duration    = ENV.environment === 'test' ? 0 : this.get('duration')
 
     $scrollable.animate(
       {scrollTop},
       duration,
       this.get('easing'),
-      () => run(this, this.sendAction, 'afterScroll')
-    );
+      () => run(() => {
+        const action = this.get('afterScroll')
+        if (typeof action === 'function') action()
+      })
+    )
   },
-});
+})

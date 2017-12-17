@@ -10,11 +10,15 @@ Unreleased
 
 
 
-1.2.0
------
+2.0.0 (2017-12-17)
+------------------
 
 ### Fixed
-- Fix bug with scrollTop detecting incorrectly.
+- Fix bug with scrollTop detecting incorrectly. :warning: Potentially breaking change.
+
+### Code maintenance
+- Upgrade Ember CLI and dependencies.
+- Update tests.
 
 
 

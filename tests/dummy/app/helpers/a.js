@@ -1,12 +1,8 @@
-import Ember from 'ember';
+import {A} from '@ember/array'
+import Helper from '@ember/component/helper'
 
-const {
-  A,
-  Helper
-} = Ember;
-
-export function a(params/*, hash*/) {
-  return A(params);
+export function a (params/*, hash*/) {
+  return A(params)
 }
 
-export default Helper.helper(a);
+export default Helper.helper(a)

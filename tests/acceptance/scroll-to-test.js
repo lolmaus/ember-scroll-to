@@ -1,71 +1,46 @@
-import { test } from 'qunit';
-import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+import {test} from 'qunit'
+import $ from 'jquery'
+import moduleForAcceptance from '../../tests/helpers/module-for-acceptance'
 
-moduleForAcceptance('Acceptance | scroll to');
+moduleForAcceptance('Acceptance | scroll to')
 
-test('visiting /scroll-to', function(assert) {
-  visit('/');
+// QUnit.config.testTimeout = 1000 * 60 * 60
 
-  let $left;
-  let $right;
-  let $body ;
+test('visiting /scroll-to', async function (assert) {
+  await visit('/')
 
-  andThen(function() {
 
-    $left  = $('.scrollable-left');
-    $right = $('.scrollable-right');
-    $body  = $('#ember-testing-container');
 
-    assert.equal($left .scrollTop(), 0, 'initial $left  scolltop');
-    assert.equal($right.scrollTop(), 0, 'initial $right scolltop');
-    // assert.equal($body .scrollTop(), 0, 'initial $body  scolltop');
-  });
+  const $left  = $('.scrollable-left')
+  assert.equal($left .scrollTop(), 0, 'initial $left  scolltop')
 
-  andThen(function() {
-    click('.button-left-20');
-  });
+  await click('.button-left-20')
+  assert.equal($left.scrollTop(), 696, '$left scrolltop after click on 20')
 
-  andThen(function() {
-    assert.equal($left.scrollTop(), 696, '$left scrolltop after click on 20');
-  });
+  await click('.button-left-80')
+  assert.equal($left.scrollTop(), 2736, '$left scrolltop after click on 80')
 
-  andThen(function() {
-    click('.button-right-20');
-  });
 
-  andThen(function() {
-    assert.equal($right.scrollTop(), 696, '$right scrolltop after click on 20');
-  });
 
-  // andThen(function() {
-  //   click('.button-body-20');
-  // });
-  //
-  // andThen(function() {
-  //   assert.equal($body.scrollTop(), 1105, '$body scrolltop after click on 20');
-  // });
+  const $right = $('.scrollable-right')
+  assert.equal($right.scrollTop(), 0, 'initial $right scolltop')
 
-  andThen(function() {
-    click('.button-left-80');
-  });
+  await click('.button-right-20')
+  assert.equal($right.scrollTop(), 696, '$right scrolltop after click on 20')
 
-  andThen(function() {
-    assert.equal($left.scrollTop(), 2736, '$left scrolltop after click on 20');
-  });
+  await click('.button-right-80')
+  assert.equal($right.scrollTop(), 2416, '$right scrolltop after click on 80')
 
-  andThen(function() {
-    click('.button-right-80');
-  });
 
-  andThen(function() {
-    assert.equal($right.scrollTop(), 2736, '$right scrolltop after click on 20');
-  });
 
-  // andThen(function() {
-  //   click('.button-body-80');
-  // });
-  //
-  // andThen(function() {
-  //   assert.equal($body.scrollTop(), 1324, '$body scrolltop after click on 20');
-  // });
-});
+  const $body  = $('#ember-testing-container')
+  assert.equal($body .scrollTop(), 0, 'initial $body  scolltop')
+
+  await click('.button-body-20')
+  assert.equal($body.scrollTop(), 749, '$body scrolltop after click on 20')
+
+  await click('.button-body-80')
+  assert.equal($body.scrollTop(), 2789, '$body scrolltop after click on 80')
+
+  // await new Promise((resolve) => window.resolve = resolve)
+})

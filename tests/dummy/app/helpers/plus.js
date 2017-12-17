@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import {helper} from '@ember/component/helper'
 
-export function plus(params/*, hash*/) {
-  return params.reduce((a, b) => a + b);
+export function plus (params/*, hash*/) {
+  return params.reduce((a, b) => a + b)
 }
 
-export default Ember.Helper.helper(plus);
+export default helper(plus)

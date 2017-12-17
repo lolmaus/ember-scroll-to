@@ -1,9 +1,8 @@
-/* jshint node: true */
-'use strict';
+'use strict'
 
 module.exports = {
-  name: 'ember-scroll-to-mk2'
-};
+  name : 'ember-scroll-to-mk2',
+}
 
 /**
 
