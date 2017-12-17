@@ -10,7 +10,7 @@ import layout from 'ember-scroll-to-mk2/templates/components/scroll-to'
 const DEFAULT_SCROLLABLE =
   ENV.environment === 'test'
     ? '#ember-testing-container'
-    : 'html, body'
+    : 'html'
 
 
 /**

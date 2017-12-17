@@ -13,12 +13,15 @@ Unreleased
 2.0.0 (2017-12-17)
 ------------------
 
-### Fixed
-- Fix bug with scrollTop detecting incorrectly. :warning: Potentially breaking change.
+### New
+- `shouldAccountForScrollable` lets you control how scroll position is calculated, useful in complex layouts. :warning: Potentially breaking change.
 
 ### Code maintenance
 - Upgrade Ember CLI and dependencies.
 - Update tests.
+
+### Demo
+- More complicated demo to test for various cases.
 
 
 

@@ -37,10 +37,10 @@ test('visiting /scroll-to', async function (assert) {
   assert.equal($body .scrollTop(), 0, 'initial $body  scolltop')
 
   await click('.button-body-20')
-  assert.equal($body.scrollTop(), 749, '$body scrolltop after click on 20')
+  assert.equal($body.scrollTop(), 799, '$body scrolltop after click on 20')
 
   await click('.button-body-80')
-  assert.equal($body.scrollTop(), 2789, '$body scrolltop after click on 80')
+  assert.equal($body.scrollTop(), 2839, '$body scrolltop after click on 80')
 
   // await new Promise((resolve) => window.resolve = resolve)
 })
