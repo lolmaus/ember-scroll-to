@@ -11,6 +11,11 @@ const {
 
 import layout from 'ember-scroll-to-mk2/templates/components/scroll-to';
 
+const DEFAULT_SCROLLABLE =
+  ENV.environment === 'test'
+    ? '#ember-testing-container'
+    : 'html, body';
+
 
 /**
 A link/button component that performs scrolling to given selector.
@@ -44,17 +49,18 @@ Block form:
 
 ## Arguments
 
-| Argument          | Type                 | Default  value  | Description                                                                                  |
-|:------------------|:---------------------|:----------------|:---------------------------------------------------------------------------------------------|
-| `label`           | `undefined`/`String` | `undefined`     | If no block is provided, this is used as link/button label.                                  |
-| `target`          | `String`             | **\<required>** | Selector of the element to scroll to                                                         |
-| `scrollable`      | `String`             | `'html, body'`  | Selector of the element being scrolled. In `test` env, `'#ember-testing-container'` is used. |
-| `duration`        | `undefined`/`Number` | `undefined`     | Animation duration in milliseconds. When `undefined`, jQuery's default is used.              |
-| `easing`          | `undefined`/`String` | `undefined`     | Animation easing name. When `undefined`, jQuery's default is used.                           |
-| `offset`          | `Number`             | `0`             | Lets you scroll slightly above or below the target.                                          |
-| `cacheTarget`     | `Boolean`            | `true`          | Whether to cache the target element.                                                         |
-| `cacheScrollable` | `Boolean`            | `true`          | Whether to cache the scrollable element.                                                     |
-| `afterScroll`     | `undefined`/Action   | `undefined`     | Ember Action to invoke every time scrolling animation completes.                             |
+| Argument                     | Type                 | Default  value                         | Description                                                                                  |
+|:-----------------------------|:---------------------|:---------------------------------------|:---------------------------------------------------------------------------------------------|
+| `label`                      | `undefined`/`String` | `undefined`                            | If no block is provided, this is used as link/button label.                                  |
+| `target`                     | `String`             | **\<required>**                        | Selector of the element to scroll to                                                         |
+| `scrollable`                 | `String`             | `'html, body'`                         | Selector of the element being scrolled. In `test` env, `'#ember-testing-container'` is used. |
+| `duration`                   | `undefined`/`Number` | `undefined`                            | Animation duration in milliseconds. When `undefined`, jQuery's default is used.              |
+| `easing`                     | `undefined`/`String` | `undefined`                            | Animation easing name. When `undefined`, jQuery's default is used.                           |
+| `offset`                     | `Number`             | `0`                                    | Lets you scroll slightly above or below the target.                                          |
+| `cacheTarget`                | `Boolean`            | `true`                                 | Whether to cache the target element.                                                         |
+| `cacheScrollable`            | `Boolean`            | `true`                                 | Whether to cache the scrollable element.                                                     |
+| `afterScroll`                | `undefined`/Action   | `undefined`                            | Ember Action to invoke every time scrolling animation completes.                             |
+| `shouldAccountForScrollable` | `Boolean`            | `false` if `scrollable` is not default | Whether to account for `scollable`'s `offset` and `scolllTop` when calculating `scolllTop`.  |
 
 
 
@@ -85,12 +91,7 @@ export default Component.extend({
    * @type String
    * @default 'html, body'
    **/
-  scrollable: computed(
-    () =>
-      ENV.environment === 'test'
-        ? '#ember-testing-container'
-        : 'html, body'
-  ),
+  scrollable: DEFAULT_SCROLLABLE,
 
 
 
@@ -187,6 +188,20 @@ export default Component.extend({
       ? (this.get('target') || '')
       : null;
   }),
+
+
+
+  /**
+   * Whether to account for `scollable`'s `offset` and `scolllTop` when calculating `scolllTop`.
+   *
+   * @property shouldAccountForScrollable
+   * @type Boolean
+   **/
+  shouldAccountForScrollable: computed('scrollable', function () {
+    return this.get('scrollable') !== DEFAULT_SCROLLABLE;
+  }),
+
+
 
   /**
    * @property layout
@@ -313,15 +328,17 @@ export default Component.extend({
     $scrollable = $scrollable || this._get$scrollableCached();
     $target    = $target    || this._get$targetCached();
 
-    const scrollableOffset    = $scrollable.offset().top;
-    const scrollableScrollTop = $scrollable.scrollTop();
-    const elementOffset       = $target.offset().top;
+    const elementOffset              = $target.offset().top;
+    const offset                     = this.get('offset');
+    const shouldAccountForScrollable = this.get('shouldAccountForScrollable');
 
-    const verticalCoord =
-      elementOffset
-      - scrollableOffset
-      + scrollableScrollTop
-      + this.get('offset');
+    let verticalCoord = elementOffset + offset;
+
+    if (shouldAccountForScrollable) {
+      const scrollableOffset    = $scrollable.offset().top;
+      const scrollableScrollTop = $scrollable.scrollTop();
+      verticalCoord = verticalCoord - scrollableOffset + scrollableScrollTop;
+    }
 
     return verticalCoord;
   },

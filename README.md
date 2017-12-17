@@ -67,17 +67,18 @@ Block form:
 Arguments
 ---------
 
-| Argument          | Type                 | Default  value  | Description                                                                                  |
-|:------------------|:---------------------|:----------------|:---------------------------------------------------------------------------------------------|
-| `label`           | `undefined`/`String` | `undefined`     | If no block is provided, this is used as link/button label.                                  |
-| `target`          | `String`             | **\<required>** | Selector of the element to scroll to                                                         |
-| `scrollable`      | `String`             | `'html, body'`  | Selector of the element being scrolled. In `test` env, `'#ember-testing-container'` is used. |
-| `duration`        | `undefined`/`Number` | `undefined`     | Animation duration in milliseconds. When `undefined`, jQuery's default is used.              |
-| `easing`          | `undefined`/`String` | `undefined`     | Animation easing name. When `undefined`, jQuery's default is used.                           |
-| `offset`          | `Number`             | `0`             | Lets you scroll slightly above or below the target.                                          |
-| `cacheTarget`     | `Boolean`            | `true`          | Whether to cache the target element.                                                         |
-| `cacheScrollable` | `Boolean`            | `true`          | Whether to cache the scrollable element.                                                     |
-| `afterScroll`     | `undefined`/Action   | `undefined`     | Ember Action to invoke every time scrolling animation completes.                             |
+| Argument                     | Type                 | Default  value                         | Description                                                                                  |
+|:-----------------------------|:---------------------|:---------------------------------------|:---------------------------------------------------------------------------------------------|
+| `label`                      | `undefined`/`String` | `undefined`                            | If no block is provided, this is used as link/button label.                                  |
+| `target`                     | `String`             | **\<required>**                        | Selector of the element to scroll to                                                         |
+| `scrollable`                 | `String`             | `'html, body'`                         | Selector of the element being scrolled. In `test` env, `'#ember-testing-container'` is used. |
+| `duration`                   | `undefined`/`Number` | `undefined`                            | Animation duration in milliseconds. When `undefined`, jQuery's default is used.              |
+| `easing`                     | `undefined`/`String` | `undefined`                            | Animation easing name. When `undefined`, jQuery's default is used.                           |
+| `offset`                     | `Number`             | `0`                                    | Lets you scroll slightly above or below the target.                                          |
+| `cacheTarget`                | `Boolean`            | `true`                                 | Whether to cache the target element.                                                         |
+| `cacheScrollable`            | `Boolean`            | `true`                                 | Whether to cache the scrollable element.                                                     |
+| `afterScroll`                | `undefined`/Action   | `undefined`                            | Ember Action to invoke every time scrolling animation completes.                             |
+| `shouldAccountForScrollable` | `Boolean`            | `false` if `scrollable` is not default | Whether to account for `scollable`'s `offset` and `scolllTop` when calculating `scolllTop`.  |
 
 
 

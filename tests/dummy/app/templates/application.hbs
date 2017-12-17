@@ -1,3 +1,7 @@
+<p>
+  This page is designed to imitate various complicated use cases: fixed position, scrollable inside scrollable, relative parent, etc.
+</p>
+
 <div class="scrollable">
 
 
@@ -67,33 +71,47 @@
         class     = "button-body-80"
       }}
     </p>
-  </div>
+  </div><!-- fixed -->
 
 
   <div class="fixed scrollable scrollable-left">
-    {{#each (range 100) as |i|}}
-      <p id={{plus "left-" i}}>
-        {{i}}
-      </p>
+    {{#each (range 10) as |i|}}
+      <div id="{{plus "left-group-" i}}" class="group">
+        {{#each (range 10) as |k|}}
+          <p id={{plus "left-" (plus (times i 10) k)}}>
+            {{plus (times i 10) k}}
+          </p>
+        {{/each}}
+      </div>
     {{/each}}
   </div>
 
 
-  <div class="fixed scrollable scrollable-right">
-    {{#each (range 100) as |i|}}
-      <p id={{plus "right-" i}}>
-        {{i}}
-      </p>
-    {{/each}}
+  <div class="scrollable-right-parent">
+    <div class="scrollable scrollable-right">
+      {{#each (range 10) as |i|}}
+        <div id="{{plus "right-group-" i}}" class="group">
+          {{#each (range 10) as |k|}}
+            <p id={{plus "right-" (plus (times i 10) k)}}>
+              {{plus (times i 10) k}}
+            </p>
+          {{/each}}
+        </div>
+      {{/each}}
+    </div>
   </div>
 
 </div>
 
 
 <div class="scrollable scrollable-body">
-  {{#each (range 100) as |i|}}
-    <p id={{plus "body-" i}}>
-      {{i}}
-    </p>
+  {{#each (range 10) as |i|}}
+    <div id="{{plus "body-group-" i}}" class="group">
+      {{#each (range 10) as |k|}}
+        <p id={{plus "body-" (plus (times i 10) k)}}>
+          {{plus (times i 10) k}}
+        </p>
+      {{/each}}
+    </div>
   {{/each}}
 </div>

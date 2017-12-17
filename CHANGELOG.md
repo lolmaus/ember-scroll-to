@@ -10,6 +10,14 @@ Unreleased
 
 
 
+1.2.0
+-----
+
+### Fixed
+- Fix bug with scrollTop detecting incorrectly.
+
+
+
 1.1.0
 -----
 

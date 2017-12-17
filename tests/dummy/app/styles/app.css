@@ -1,7 +1,7 @@
 .fixed {
   position: fixed;
 
-  top:    2rem;
+  top:    4rem;
   left:   2rem;
   bottom: 2rem;
 
@@ -9,6 +9,8 @@
 
   overflow-x: hidden;
   overflow-y: auto;
+
+  z-index: 2;
 }
 
 .scrollable-left {
@@ -16,9 +18,25 @@
   left: 14rem;
 }
 
+.scrollable-right-parent {
+  float:       left;
+  margin-left: 26rem;
+  margin-top:  5rem;
+  padding:     5rem;
+  width:       10rem;
+  height:      50vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: relative;
+  z-index: 2;
+  outline:     2px dotted blue;
+}
+
 .scrollable-right {
-  outline: 2px dashed red;
-  left:    26rem;
+  overflow-x:  hidden;
+  overflow-y:  auto;
+  height:      calc(100vh - 4rem);
+  outline:     2px dashed red;
 }
 
 .scrollable-body {
@@ -31,4 +49,8 @@
 
 #ember-testing-container .fixed {
   position: absolute;
+}
+
+.group {
+  position: relative;
 }
